@@ -1,1 +1,2 @@
 # KOFFEE-MODERATOR
+Discord bot для KOFFEE PROJECT 
