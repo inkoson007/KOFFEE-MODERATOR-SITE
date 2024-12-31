@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOFFEE MODERATOR FAQ</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            border-bottom: 2px solid #444;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #111;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin: 10px 0 10px 20px;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #111;
+            border-top: 2px solid #444;
+            font-size: 0.9em;
+        }
+
+        #settings {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #222;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        #settings-panel {
+            display: none;
+            position: fixed;
+            top: 50px;
+            right: 10px;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .toggle {
+            margin: 10px 0;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .light-theme {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .light-theme header,
+        .light-theme footer {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        .light-theme main {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="snow-canvas"></canvas>
+    <header>
+        <h1>KOFFEE MODERATOR FAQ</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Обновление v0.13</h2>
+            <ul>
+                <li>Система анкет, команды на удаление сообщений</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Системы бота</h2>
+            <ul>
+                <li>Система тикетов</li>
+                <li>Система автоматического создания ветки для комментирования</li>
+                <li>Система временных голосовых каналов</li>
+                <li>Система отправки постов с telegram канала на сервер discord</li>
+                <li>Система подключения vk бота к discord боту</li>
+                <li>Система записи на рп сессии </li>
+                <li>Система подачи и обработки анкет </li>
+            </ul>
+        </section>
+        <section>
+            <h2>Основные команды</h2>
+            <ul>
+                <li><strong>!info:</strong> Показывает информацию о боте.</li>
+                <li><strong>!ui [@пользователь]:</strong> Показывает информацию о пользователе.</li>
+                <li><strong>!help:</strong> Показывает список всех команд.</li>
+                <li><strong>!топ:</strong> Отображает топ пользователей по репутации.</li>
+                <li><strong>+rep:</strong> Повышает репутацию указанного пользователя.</li>
+                <li><strong>-rep:</strong> Понижает репутацию указанного пользователя.</li>
+                <li><strong>!stop:</strong> Останавливает воспроизведение музыки.</li>
+                <li><strong>!music:</strong> Показывает информацию о текущем треке или радио.</li>
+                <li><strong>!p:</strong> Меню музыкального модуля.</li>
+                <li><strong>!sprofile [steamid64]:</strong> Показывает информацию о профиле Steam.</li>
+                <li><strong>!sgame [название игры]:</strong> Показывает информацию об игре в Steam.</li>
+                <li><strong>!ssale:</strong> Показывает информацию о скидках в Steam.</li>
+                <li><strong>!epicgame:</strong> Показывает информацию о текущей бесплатной игре в Epic Games.</li>
+                <li><strong>!epicsales:</strong> Показывает информацию о скидках в Epic Games.</li>
+                <li><strong>!2025:</strong> Показывает, сколько дней осталось до 2025 года.</li>
+                <li><strong>!abbdr [день.месяц]:</strong> Добавляет дату рождения пользователя.</li>
+                <li><strong>!dr:</strong> Показывает список дней рождений.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Команды администраторов</h2>
+            <ul>
+                <li><strong>!повтори [сообщение]:</strong> Бот повторяет указанное сообщение.</li>
+                <li><strong>!бан [@пользователь]:</strong> Забанить пользователя на сервере.</li>
+                <li><strong>!мут [@пользователь]:</strong> Замутить пользователя, запрещая ему отправлять сообщения.</li>
+                <li><strong>!пред [@пользователь]:</strong> Выдать предупреждение пользователю.</li>
+                <li><strong>!удалить</strong> Удалить сообщение.</li>
+                <li><strong>!удалитьотпользователя</strong> удаляет сообщение конкретного человека.</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>KOFFEE MODERATOR V0.0.13 [BETA]</p>
+    </footer>
+
+    <div id="settings">⚙️ Настройки</div>
+    <div id="settings-panel">
+        <div class="toggle">
+            <label>
+                <input type="checkbox" id="toggle-snow"> Включить снег
+            </label>
+        </div>
+        <div class="toggle">
+            <label>
+                <input type="checkbox" id="toggle-theme"> Белая тема
+            </label>
+        </div>
+    </div>
+
+    <script>
+        const settingsButton = document.getElementById('settings');
+        const settingsPanel = document.getElementById('settings-panel');
+        const snowCanvas = document.getElementById('snow-canvas');
+        const ctx = snowCanvas.getContext('2d');
+        const toggleSnow = document.getElementById('toggle-snow');
+        const toggleTheme = document.getElementById('toggle-theme');
+        let snowflakes = [];
+        let snowEnabled = false;
+
+        settingsButton.addEventListener('click', () => {
+            settingsPanel.style.display = settingsPanel.style.display === 'block' ? 'none' : 'block';
+        });
+
+        toggleSnow.addEventListener('change', () => {
+            snowEnabled = toggleSnow.checked;
+            if (snowEnabled) initSnow();
+        });
+
+        toggleTheme.addEventListener('change', () => {
+            document.body.classList.toggle('light-theme', toggleTheme.checked);
+        });
+
+        function initSnow() {
+            snowflakes = Array.from({ length: 100 }, () => createSnowflake());
+            requestAnimationFrame(updateSnow);
+        }
+
+        function createSnowflake() {
+            return {
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size: Math.random() * 3 + 2,
+                speed: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.5 + 0.5,
+                direction: Math.random() * 2 - 1
+            };
+        }
+
+        function updateSnow() {
+            if (!snowEnabled) return;
+
+            ctx.clearRect(0, 0
+            , snowCanvas.width, snowCanvas.height);
+            snowflakes.forEach((snowflake) => {
+                snowflake.y += snowflake.speed;
+                snowflake.x += snowflake.direction * 2;
+
+                // Adjust speed and direction based on cursor position
+                const dx = snowflake.x - window.innerWidth / 2;
+                const dy = snowflake.y - window.innerHeight / 2;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                snowflake.speed = Math.min(Math.max(1, distance / 500), 3);
+
+                if (snowflake.x > window.innerWidth || snowflake.x < 0 || snowflake.y > window.innerHeight) {
+                    Object.assign(snowflake, createSnowflake());
+                    snowflake.y = 0; // Start from the top again
+                }
+
+                ctx.globalAlpha = snowflake.opacity;
+                ctx.beginPath();
+                ctx.arc(snowflake.x, snowflake.y, snowflake.size, 0, Math.PI * 2);
+                ctx.fillStyle = "#fff";
+                ctx.fill();
+            });
+
+            requestAnimationFrame(updateSnow);
+        }
+
+        function resizeCanvas() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+    </script>
+</body>
+</html>
