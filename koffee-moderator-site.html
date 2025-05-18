@@ -3,95 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOFFEE MODERATOR FAQ</title>
+    <title>KOFFEE MODERATOR FAQ with Constellation Effect</title>
     <style>
+        :root {
+            --primary: #6F4E37;
+            --secondary: #C4A484;
+            --dark: #1A120B;
+            --light: #F5F5DC;
+            --accent: #D2B48C;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
             overflow-x: hidden;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes titleAppear {
+            0% { opacity: 0; transform: scale(0.8); }
+            20% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes titleDisappear {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.9); }
+        }
+
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeOut 1.5s ease-in-out forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        .intro-title {
+            font-size: 4em;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: titleAppear 1s ease-out forwards, 
+                      titleDisappear 0.5s ease-in forwards;
+            animation-delay: 0s, 1.5s;
         }
 
         header {
             text-align: center;
-            padding: 20px;
-            background-color: #111;
-            border-bottom: 2px solid #444;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            border-bottom: 1px solid var(--secondary);
+            position: relative;
+            z-index: 20;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 2.5s;
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin: 0;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
         }
 
         main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #111;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(26, 18, 11, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 180, 140, 0.2);
+            position: relative;
+            z-index: 20;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 2.7s;
         }
 
         section {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(26, 18, 11, 0.5);
+            border-left: 4px solid var(--primary);
+        }
+
+        section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         h2 {
-            font-size: 1.5em;
-            border-bottom: 2px solid #444;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            display: inline-block;
         }
 
         p {
-            line-height: 1.6;
-            font-size: 1em;
+            line-height: 1.7;
+            font-size: 1.1em;
         }
 
         ul {
-            list-style-type: disc;
-            margin: 10px 0 10px 20px;
+            list-style-type: none;
+            margin: 15px 0;
+            padding: 0;
         }
 
         ul li {
-            margin-bottom: 5px;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        ul li:before {
+            content: "•";
+            color: var(--primary);
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        ul li strong {
+            color: var(--accent);
         }
 
         footer {
             text-align: center;
-            padding: 10px;
-            background-color: #111;
-            border-top: 2px solid #444;
-            font-size: 0.9em;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            border-top: 1px solid var(--secondary);
+            font-size: 1em;
+            margin-top: 40px;
+            position: relative;
+            z-index: 20;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 2.9s;
         }
 
         #settings {
             position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: #222;
-            color: #fff;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: var(--light);
+            padding: 12px 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             cursor: pointer;
+            z-index: 100;
+            font-size: 1.2em;
+            border: 1px solid var(--secondary);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 3s;
+        }
+
+        #settings:hover {
+            transform: rotate(30deg) scale(1.1);
+            background: var(--secondary);
         }
 
         #settings-panel {
             display: none;
             position: fixed;
-            top: 50px;
-            right: 10px;
-            background-color: #111;
+            top: 80px;
+            right: 20px;
+            background: rgba(26, 18, 11, 0.95);
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 180, 140, 0.3);
+            z-index: 99;
+            min-width: 200px;
         }
 
         .toggle {
-            margin: 10px 0;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: var(--light);
+        }
+
+        .toggle input[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 50px;
+            height: 25px;
+            background: var(--dark);
+            border-radius: 25px;
+            position: relative;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 1px solid var(--secondary);
+        }
+
+        .toggle input[type="checkbox"]:checked {
+            background: var(--primary);
+        }
+
+        .toggle input[type="checkbox"]:after {
+            content: '';
+            position: absolute;
+            width: 21px;
+            height: 21px;
+            background: var(--light);
+            border-radius: 50%;
+            top: 1px;
+            left: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle input[type="checkbox"]:checked:after {
+            left: calc(100% - 22px);
+            background: var(--accent);
         }
 
         canvas {
@@ -101,27 +276,106 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
+            z-index: 10;
+        }
+
+        #stars-canvas {
             z-index: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .stars-visible {
+            opacity: 1 !important;
+        }
+
+        .constellation-line {
+            position: absolute;
+            background: linear-gradient(to right, 
+                rgba(200, 230, 255, 0.9), 
+                rgba(150, 200, 255, 0.3));
+            height: 1.5px;
+            transform-origin: 0 0;
+            pointer-events: none;
+            z-index: 5;
+            filter: blur(0.5px);
+            box-shadow: 0 0 8px rgba(180, 220, 255, 0.7);
+            border-radius: 2px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .constellation-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 6;
+            box-shadow: 0 0 6px 2px rgba(180, 220, 255, 0.8);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .light-theme {
-            background-color: #fff;
-            color: #000;
+            --dark: #F5F5DC;
+            --light: #1A120B;
+            --primary: #8B5A2B;
+            --secondary: #A67C52;
+            --accent: #8B4513;
+            background: radial-gradient(ellipse at bottom, #E5E5E5 0%, #C9C9C9 100%);
         }
 
-        .light-theme header,
+        .light-theme header {
+            background: linear-gradient(135deg, #D2B48C 0%, #F5F5DC 100%);
+        }
+
         .light-theme footer {
-            background-color: #f0f0f0;
-            color: #000;
+            background: linear-gradient(135deg, #F5F5DC 0%, #D2B48C 100%);
         }
 
-        .light-theme main {
-            background-color: #f9f9f9;
+        .light-theme main,
+        .light-theme section {
+            background: rgba(245, 245, 220, 0.8);
+        }
+
+        .light-theme #settings-panel {
+            background: rgba(245, 245, 220, 0.95);
+        }
+
+        .light-theme .toggle label {
+            color: var(--dark);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                margin: 20px 15px;
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .intro-title {
+                font-size: 2.5em;
+            }
         }
     </style>
 </head>
 <body>
+    <canvas id="stars-canvas"></canvas>
     <canvas id="snow-canvas"></canvas>
+    
+    <div class="intro-overlay">
+        <div class="intro-title">KOFFEE MODERATOR</div>
+    </div>
+    
     <header>
         <h1>KOFFEE MODERATOR FAQ</h1>
     </header>
@@ -138,10 +392,10 @@
                 <li>Система тикетов</li>
                 <li>Система автоматического создания ветки для комментирования</li>
                 <li>Система временных голосовых каналов</li>
-                <li>Система отправки постов с telegram канала на сервер discord</li>
+                <li>Система отправки постов с telegram канала на сервер discord и vk</li>
                 <li>Система подключения vk бота к discord боту</li>
-                <li>Система записи на рп сессии </li>
-                <li>Система подачи и обработки анкет </li>
+                <li>Система записи на рп сессии</li>
+                <li>Система подачи и обработки анкет</li>
             </ul>
         </section>
         <section>
@@ -165,7 +419,7 @@
                 <li><strong>!abbdr [день.месяц]:</strong> Добавляет дату рождения пользователя.</li>
                 <li><strong>!dr:</strong> Показывает список дней рождений.</li>
                 <li><strong>!server:</strong> Показывает информацию о сервере discord.</li>
-                <li><strong>!оп-статистика:</strong>Показывает статистику анкет.</li>
+                <li><strong>!оп-статистика:</strong> Показывает статистику анкет.</li>
             </ul>
         </section>
 
@@ -185,7 +439,7 @@
         <p>KOFFEE MODERATOR V0.0.16 [BETA]</p>
     </footer>
 
-    <div id="settings">⚙️ Настройки</div>
+    <div id="settings">⚙️</div>
     <div id="settings-panel">
         <div class="toggle">
             <label>
@@ -197,84 +451,426 @@
                 <input type="checkbox" id="toggle-theme"> Белая тема
             </label>
         </div>
+        <div class="toggle">
+            <label>
+                <input type="checkbox" id="toggle-stars"> Звёздное небо
+            </label>
+        </div>
+        <div class="toggle">
+            <label>
+                <input type="checkbox" id="toggle-constellations"> Созвездия
+            </label>
+        </div>
     </div>
 
     <script>
+        // Элементы DOM
         const settingsButton = document.getElementById('settings');
         const settingsPanel = document.getElementById('settings-panel');
         const snowCanvas = document.getElementById('snow-canvas');
-        const ctx = snowCanvas.getContext('2d');
+        const starsCanvas = document.getElementById('stars-canvas');
+        const snowCtx = snowCanvas.getContext('2d');
+        const starsCtx = starsCanvas.getContext('2d');
         const toggleSnow = document.getElementById('toggle-snow');
         const toggleTheme = document.getElementById('toggle-theme');
+        const toggleStars = document.getElementById('toggle-stars');
+        const toggleConstellations = document.getElementById('toggle-constellations');
+        
+        // Состояние
         let snowflakes = [];
+        let stars = [];
         let snowEnabled = false;
+        let starsEnabled = false;
+        let constellationsEnabled = false;
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
 
+        // Эффект созвездий
+        let isMouseDown = false;
+        let constellationLines = [];
+        let constellationDots = [];
+        let lastMouseX = 0;
+        let lastMouseY = 0;
+        let connectionRadius = 250;
+        let maxLines = 12;
+        let pulseInterval;
+        let pulseDirection = 1;
+        let currentPulse = 0;
+
+        // Настройки панели
         settingsButton.addEventListener('click', () => {
             settingsPanel.style.display = settingsPanel.style.display === 'block' ? 'none' : 'block';
         });
 
+        // Переключатель снега
         toggleSnow.addEventListener('change', () => {
             snowEnabled = toggleSnow.checked;
-            if (snowEnabled) initSnow();
+            if (snowEnabled) {
+                initSnow();
+            } else {
+                snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            }
         });
 
+        // Переключатель темы
         toggleTheme.addEventListener('change', () => {
             document.body.classList.toggle('light-theme', toggleTheme.checked);
+            if (toggleTheme.checked) {
+                toggleStars.checked = false;
+                toggleConstellations.checked = false;
+                starsEnabled = false;
+                constellationsEnabled = false;
+                starsCanvas.classList.remove('stars-visible');
+                clearConstellationElements();
+            }
         });
 
+        // Переключатель звёзд
+        toggleStars.addEventListener('change', () => {
+            starsEnabled = toggleStars.checked && !document.body.classList.contains('light-theme');
+            if (starsEnabled) {
+                starsCanvas.classList.add('stars-visible');
+                initStars();
+            } else {
+                starsCanvas.classList.remove('stars-visible');
+                starsCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+                toggleConstellations.checked = false;
+                constellationsEnabled = false;
+                clearConstellationElements();
+            }
+        });
+
+        // Переключатель созвездий
+        toggleConstellations.addEventListener('change', () => {
+            constellationsEnabled = toggleConstellations.checked && starsEnabled;
+            if (!constellationsEnabled) {
+                clearConstellationElements();
+            }
+        });
+
+        // Отслеживание положения мыши
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (isMouseDown && constellationsEnabled) {
+                updateConstellation(e.clientX, e.clientY);
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+            }
+        });
+
+        // Обработчики для эффекта созвездий
+        document.addEventListener('mousedown', (e) => {
+            if (!constellationsEnabled) return;
+            isMouseDown = true;
+            lastMouseX = e.clientX;
+            lastMouseY = e.clientY;
+            startPulseEffect();
+            updateConstellation(e.clientX, e.clientY);
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!constellationsEnabled) return;
+            isMouseDown = false;
+            clearPulseEffect();
+            clearConstellationElements();
+        });
+
+        // Эффект пульсации линий
+        function startPulseEffect() {
+            clearPulseEffect();
+            currentPulse = 0;
+            pulseDirection = 1;
+            pulseInterval = setInterval(() => {
+                currentPulse += 0.02 * pulseDirection;
+                if (currentPulse > 0.3 || currentPulse < 0) {
+                    pulseDirection *= -1;
+                }
+                
+                constellationLines.forEach(line => {
+                    const baseOpacity = parseFloat(line.getAttribute('data-base-opacity'));
+                    line.style.opacity = baseOpacity + currentPulse;
+                });
+                
+                constellationDots.forEach(dot => {
+                    const baseOpacity = parseFloat(dot.getAttribute('data-base-opacity'));
+                    dot.style.opacity = baseOpacity + currentPulse * 2;
+                    dot.style.transform = `translate(-50%, -50%) scale(${1 + currentPulse})`;
+                });
+            }, 30);
+        }
+
+        function clearPulseEffect() {
+            if (pulseInterval) {
+                clearInterval(pulseInterval);
+                pulseInterval = null;
+            }
+        }
+
+        // Создание созвездий
+        function updateConstellation(mouseX, mouseY) {
+            clearConstellationElements();
+            
+            // Находим ближайшие звёзды
+            const nearbyStars = stars
+                .map(star => {
+                    const dx = star.x - mouseX;
+                    const dy = star.y - mouseY;
+                    return {
+                        ...star,
+                        distance: Math.sqrt(dx * dx + dy * dy),
+                        angle: Math.atan2(dy, dx)
+                    };
+                })
+                .filter(star => star.distance < connectionRadius)
+                .sort((a, b) => a.distance - b.distance)
+                .slice(0, maxLines);
+            
+            // Создаём линии и точки
+            nearbyStars.forEach(star => {
+                createConstellationLine(mouseX, mouseY, star.x, star.y, star.distance);
+                createConstellationDot(star.x, star.y, star.distance);
+            });
+        }
+
+        function createConstellationLine(x1, y1, x2, y2, distance) {
+            const line = document.createElement('div');
+            line.className = 'constellation-line';
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            const opacity = 0.7 * (1 - distance / connectionRadius);
+            line.setAttribute('data-base-opacity', opacity);
+            
+            line.style.width = `${length}px`;
+            line.style.left = `${x1}px`;
+            line.style.top = `${y1}px`;
+            line.style.transform = `rotate(${angle}deg)`;
+            line.style.opacity = opacity;
+            
+            document.body.appendChild(line);
+            constellationLines.push(line);
+        }
+
+        function createConstellationDot(x, y, distance) {
+            const dot = document.createElement('div');
+            dot.className = 'constellation-dot';
+            
+            const opacity = 0.9 * (1 - distance / connectionRadius);
+            dot.setAttribute('data-base-opacity', opacity);
+            
+            dot.style.left = `${x}px`;
+            dot.style.top = `${y}px`;
+            dot.style.opacity = opacity;
+            
+            document.body.appendChild(dot);
+            constellationDots.push(dot);
+        }
+
+        function clearConstellationElements() {
+            constellationLines.forEach(line => {
+                if (line.parentNode) {
+                    line.parentNode.removeChild(line);
+                }
+            });
+            constellationDots.forEach(dot => {
+                if (dot.parentNode) {
+                    dot.parentNode.removeChild(dot);
+                }
+            });
+            constellationLines = [];
+            constellationDots = [];
+        }
+
+        // Инициализация звёзд
+        function initStars() {
+            stars = [];
+            const starsCount = Math.floor(window.innerWidth * window.innerHeight / 800);
+            
+            for (let i = 0; i < starsCount; i++) {
+                stars.push({
+                    x: Math.random() * starsCanvas.width,
+                    y: Math.random() * starsCanvas.height,
+                    radius: Math.random() * 1.5 + 0.5,
+                    alpha: Math.random() * 0.7 + 0.3,
+                    speed: Math.random() * 0.03 + 0.02,
+                    angle: Math.random() * Math.PI * 2
+                });
+            }
+            
+            if (starsEnabled) {
+                drawStars();
+            }
+        }
+
+        // Отрисовка звёзд
+        function drawStars() {
+            if (!starsEnabled) return;
+            
+            starsCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+            starsCtx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            
+            stars.forEach(star => {
+                star.angle += star.speed * 0.01;
+                const dx = Math.sin(star.angle) * star.speed;
+                const dy = Math.cos(star.angle) * star.speed;
+                
+                star.x += dx;
+                star.y += dy;
+                
+                if (star.x < 0) star.x = starsCanvas.width;
+                if (star.x > starsCanvas.width) star.x = 0;
+                if (star.y < 0) star.y = starsCanvas.height;
+                if (star.y > starsCanvas.height) star.y = 0;
+                
+                // Эффект при наведении
+                const toMouseX = mouseX - star.x;
+                const toMouseY = mouseY - star.y;
+                const toMouseDist = Math.sqrt(toMouseX * toMouseX + toMouseY * toMouseY);
+                
+                if (isMouseDown && constellationsEnabled && toMouseDist < connectionRadius) {
+                    starsCtx.globalAlpha = Math.min(1, star.alpha * 1.8);
+                    starsCtx.beginPath();
+                    starsCtx.arc(star.x, star.y, star.radius * 1.5, 0, Math.PI * 2);
+                    starsCtx.fill();
+                }
+                
+                starsCtx.globalAlpha = star.alpha;
+                starsCtx.beginPath();
+                starsCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                starsCtx.fill();
+            });
+            
+            requestAnimationFrame(drawStars);
+        }
+
+        // Инициализация снега
         function initSnow() {
-            snowflakes = Array.from({ length: 100 }, () => createSnowflake());
-            requestAnimationFrame(updateSnow);
-        }
-
-        function createSnowflake() {
-            return {
+            snowflakes = Array.from({ length: 150 }, () => ({
                 x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                size: Math.random() * 3 + 2,
+                y: Math.random() * -window.innerHeight,
+                size: Math.random() * 4 + 2,
                 speed: Math.random() * 2 + 1,
-                opacity: Math.random() * 0.5 + 0.5,
-                direction: Math.random() * 2 - 1
-            };
+                opacity: Math.random() * 0.7 + 0.3,
+                direction: Math.random() * 2 - 1,
+                swing: Math.random() * 0.2 + 0.1,
+                swingOffset: Math.random() * Math.PI * 2,
+                shape: Math.floor(Math.random() * 3)
+            }));
+            
+            if (!snowEnabled) return;
+            updateSnow();
         }
 
+        // Отрисовка снежинок
+        function drawSnowflake(x, y, size, shape) {
+            snowCtx.save();
+            snowCtx.translate(x, y);
+            
+            switch(shape) {
+                case 0: // Circle
+                    snowCtx.beginPath();
+                    snowCtx.arc(0, 0, size, 0, Math.PI * 2);
+                    snowCtx.fill();
+                    break;
+                    
+                case 1: // Star
+                    snowCtx.beginPath();
+                    for (let i = 0; i < 5; i++) {
+                        snowCtx.lineTo(0, size);
+                        snowCtx.translate(0, size);
+                        snowCtx.rotate((Math.PI * 2) / 10);
+                        snowCtx.lineTo(0, -size / 2);
+                        snowCtx.translate(0, -size / 2);
+                        snowCtx.rotate((Math.PI * 6) / 10);
+                    }
+                    snowCtx.lineTo(0, size);
+                    snowCtx.closePath();
+                    snowCtx.fill();
+                    break;
+                    
+                case 2: // Hexagon
+                    snowCtx.beginPath();
+                    for (let i = 0; i < 6; i++) {
+                        const angle = (i * 2 * Math.PI) / 6;
+                        snowCtx.lineTo(size * Math.cos(angle), size * Math.sin(angle));
+                    }
+                    snowCtx.closePath();
+                    snowCtx.fill();
+                    break;
+            }
+            
+            snowCtx.restore();
+        }
+
+        // Обновление снега
         function updateSnow() {
             if (!snowEnabled) return;
-
-            ctx.clearRect(0, 0
-            , snowCanvas.width, snowCanvas.height);
-            snowflakes.forEach((snowflake) => {
-                snowflake.y += snowflake.speed;
-                snowflake.x += snowflake.direction * 2;
-
-                // Adjust speed and direction based on cursor position
-                const dx = snowflake.x - window.innerWidth / 2;
-                const dy = snowflake.y - window.innerHeight / 2;
+            
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            
+            const time = Date.now() / 1000;
+            const windStrength = 0.5;
+            const mouseInfluenceRadius = 300;
+            const mouseInfluenceStrength = 5;
+            
+            snowflakes.forEach((flake) => {
+                flake.y += flake.speed;
+                flake.x += flake.direction * windStrength + Math.sin(time * flake.swing + flake.swingOffset) * flake.swing;
+                
+                const dx = flake.x - mouseX;
+                const dy = flake.y - mouseY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                snowflake.speed = Math.min(Math.max(1, distance / 500), 3);
-
-                if (snowflake.x > window.innerWidth || snowflake.x < 0 || snowflake.y > window.innerHeight) {
-                    Object.assign(snowflake, createSnowflake());
-                    snowflake.y = 0; // Start from the top again
+                
+                if (distance < mouseInfluenceRadius) {
+                    const force = (mouseInfluenceRadius - distance) / mouseInfluenceRadius;
+                    const angle = Math.atan2(dy, dx);
+                    
+                    flake.x += Math.cos(angle) * force * mouseInfluenceStrength;
+                    flake.y += Math.sin(angle) * force * mouseInfluenceStrength;
                 }
-
-                ctx.globalAlpha = snowflake.opacity;
-                ctx.beginPath();
-                ctx.arc(snowflake.x, snowflake.y, snowflake.size, 0, Math.PI * 2);
-                ctx.fillStyle = "#fff";
-                ctx.fill();
+                
+                if (flake.x > window.innerWidth + 20 || flake.x < -20 || flake.y > window.innerHeight + 20) {
+                    flake.x = Math.random() * window.innerWidth;
+                    flake.y = -20;
+                }
+                
+                snowCtx.globalAlpha = flake.opacity;
+                snowCtx.fillStyle = "#FFFFFF";
+                drawSnowflake(flake.x, flake.y, flake.size, flake.shape);
             });
-
+            
             requestAnimationFrame(updateSnow);
         }
 
+        // Изменение размера canvas
         function resizeCanvas() {
-            snowCanvas.width = window.innerWidth;
-            snowCanvas.height = window.innerHeight;
+            snowCanvas.width = starsCanvas.width = window.innerWidth;
+            snowCanvas.height = starsCanvas.height = window.innerHeight;
+            
+            if (starsEnabled) {
+                initStars();
+            }
+            if (snowEnabled) {
+                snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            }
         }
 
         window.addEventListener('resize', resizeCanvas);
+
+        // Инициализация
         resizeCanvas();
+        
+        // После загрузки страницы показываем звёзды, если тёмная тема
+        setTimeout(() => {
+            if (!document.body.classList.contains('light-theme')) {
+                toggleStars.checked = true;
+                starsEnabled = true;
+                starsCanvas.classList.add('stars-visible');
+                initStars();
+            }
+        }, 3500);
     </script>
 </body>
 </html>
